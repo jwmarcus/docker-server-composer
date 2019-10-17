@@ -1,0 +1,16 @@
+version: '3'
+services:
+    demoapp:
+        build: ../demoapp
+        volumes:
+            - data-volume:/tmp
+    docker-nginx:
+        build: ../docker-nginx
+        depends_on:
+            - "demoapp"
+        ports:
+            - "80:8080"
+        volumes:
+            - data-volume:/tmp
+volumes:
+    data-volume:
